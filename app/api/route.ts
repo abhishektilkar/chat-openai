@@ -18,12 +18,12 @@ export async function POST(req: Request) {
             stream: true,
             messages: messages
         });
-
+    
         const stream = OpenAIStream(response);
-
+    
         return new StreamingTextResponse(stream);
-    } catch(e) {
-        return NextResponse.next()
+    } catch (error) {
+        console.error("An error occurred:", error);
+        throw error;
     }
-
 }
